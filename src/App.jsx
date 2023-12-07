@@ -8,10 +8,10 @@ function App() {
         <ol id="players">
           <Player
             symbol="X"
-            name="Player 1"/>
+            initName="Player 1"/>
           <Player
             symbol="O"
-            name="Player 2"/>
+            initName="Player 2"/>
         </ol>
         GAME BOARD
       </div>
