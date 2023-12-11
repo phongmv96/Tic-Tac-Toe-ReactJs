@@ -4,9 +4,17 @@ import {useState} from "react";
 
 function App() {
   const [activePlayer, setActivePlayer] = useState('X')
+  const [gameTurn, setGameTurn] = useState([])
 
-  function handleSelectSquare() {
+  function handleSelectSquare(rowIndex, colIndex) {
     setActivePlayer((curActivePlayer) => curActivePlayer === 'X' ? 'O' : 'X')
+    setGameTurn((prev) => {
+      let currentPlayer = 'X'
+      if (prev.length && prev[0] === 'X') {
+        currentPlayer = 'O'
+      }
+      return [{square: {rowIndex, colIndex}, player: currentPlayer}, ...prev]
+    })
   }
 
   return (
