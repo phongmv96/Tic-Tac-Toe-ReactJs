@@ -1,14 +1,9 @@
-import {useState} from "react";
 import {WINNING_COMBINATIONS} from "../wining-combination.js";
 import GameOver from "./GameOver.jsx";
 
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null]
-]
-export default function GameBoard({onSelectSquare, activePlayerSymbol, turns}) {
-  const [gameBoard, setGameBoard] = useState(initialGameBoard)
+
+export default function GameBoard({onSelectSquare, activePlayerSymbol, turns, onRestartGameTurn, gameBoard}) {
+  console.log(turns)
   for (const turn of turns) {
     const {square, player} = turn
     const {row, col} = square
@@ -32,13 +27,12 @@ export default function GameBoard({onSelectSquare, activePlayerSymbol, turns}) {
   function handleChangeGameBoard(rowIndex, colIndex) {
     const newGameBoard = [...gameBoard].map((innerArray) => [...innerArray])
     newGameBoard[rowIndex][colIndex] = activePlayerSymbol
-    setGameBoard(newGameBoard)
     onSelectSquare(rowIndex, colIndex)
   }
 
 
   return <ol id="game-board">
-    {(winner || hasDraw) && <GameOver hasDraw={hasDraw} winner={winner}/>}
+    {(winner || hasDraw) && <GameOver onRestartGameTurn={onRestartGameTurn} winner={winner}/>}
     {gameBoard.map((row, rowIndex) =>
       <li key={rowIndex}>
         <ol>
