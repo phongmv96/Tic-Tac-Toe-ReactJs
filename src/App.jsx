@@ -2,6 +2,7 @@ import Player from "./componenst/Player.jsx";
 import GameBoard from "./componenst/GameBoard.jsx";
 import {useState} from "react";
 import Log from "./componenst/Log.jsx";
+import GameOver from "./componenst/GameOver.jsx";
 
 function App() {
   const [activePlayer, setActivePlayer] = useState('X')
